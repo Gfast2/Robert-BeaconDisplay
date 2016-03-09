@@ -149,7 +149,7 @@ var app = {
 			}
 		} 
 		
-		if(add){
+		if(add){ //Add new items to the found iBeacon List
 			beacons.push(new Beacon(device.id, device.name, device.rssi, device.advertising));
 		}
 		
