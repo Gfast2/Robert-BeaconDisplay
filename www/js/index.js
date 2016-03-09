@@ -113,6 +113,7 @@ function Beacon(id, name, rssi, advertising) {
     this.advertising = advertising;
 }
 
+// Here is the total App that doing the job:
 var app = {
     initialize: function() {
         this.bindEvents();
@@ -142,15 +143,17 @@ var app = {
 		
 		for	(var i=0; i<beacons.length; i++) {
     		if(beacons[i]!=null){
-			if(beacons[i].id == device.id){
-				add=false;
-				beacons[i].rssi = device.rssi;
-			}
+                if(beacons[i].id == device.id){ // Here we get the device id
+                    add=false;
+                    beacons[i].rssi = device.rssi; // Here we get the device rssi
+                }
 			}
 		} 
 		
 		if(add){ //Add new items to the found iBeacon List
-			beacons.push(new Beacon(device.id, device.name, device.rssi, device.advertising));
+            // device name: MAC addr
+            // device id  : Name of the BLE device
+			beacons.push(new Beacon(device.id, device.name, device.rssi,device.advertising));
 		}
 		
 		app.drawList();
@@ -162,6 +165,7 @@ var app = {
 		//if(beacons.length>0){
 		for	(var i=0; i<beacons.length; i++) {
 			
+            // Here will define how single item looks like:
     		var listItem = document.createElement('li'),
 			html = '<b>' + beacons[i].name + '</b><br/>' +
 			'RSSI: ' + beacons[i].rssi + '<br/>' +
